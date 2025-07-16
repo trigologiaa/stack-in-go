@@ -98,9 +98,9 @@ go test ./stack -v
 
 This will execute tests for:
 
-* Normal stack operations (push, pop, peek).
-* Edge cases (empty stack operations).
-* Utility methods (`Clone`, `Reverse`, `Contains`, `ToSlice`).
+- Normal stack operations (push, pop, peek).
+- Edge cases (empty stack operations).
+- Utility methods (`Clone`, `Reverse`, `Contains`, `ToSlice`).
 
 You can also check test coverage:
 

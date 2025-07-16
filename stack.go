@@ -24,12 +24,11 @@
 package stack
 
 import (
-	"errors"
 	"fmt"
 	"slices"
 )
 
-// Stack is a generic LIFO (Last In, First Out) data structure.
+// A generic LIFO (Last In, First Out) data structure.
 //
 // Stack[T] holds elements of any comparable type T.
 //
@@ -38,7 +37,7 @@ type Stack[T comparable] struct {
 	data []T
 }
 
-// NewStack creates and returns a new empty Stack for type T.
+// Creates and returns a new empty Stack for type T.
 //
 // Returns:
 //   - *Stack[T]: A new empty stack for type T.
@@ -52,7 +51,7 @@ func NewStack[T comparable]() *Stack[T] {
 	return &Stack[T]{data: make([]T, 0)}
 }
 
-// Push adds a new element to the top of the stack.
+// Adds a new element to the top of the stack.
 //
 // Parameters:
 //   - data: The element to be added to the stack.
@@ -66,7 +65,7 @@ func (s *Stack[T]) Push(data T) {
 	s.data = append(s.data, data)
 }
 
-// Pop removes and returns the top element of the stack.
+// Removes and returns the top element of the stack.
 //
 // Returns:
 //   - value: The top element of the stack.
@@ -85,7 +84,7 @@ func (s *Stack[T]) Push(data T) {
 func (s *Stack[T]) Pop() (T, error) {
 	if s.IsEmpty() {
 		var zero T
-		return zero, errors.New("stack empty")
+		return zero, fmt.Errorf("stack empty")
 	}
 	index := len(s.data) - 1
 	value := s.data[index]
@@ -93,7 +92,7 @@ func (s *Stack[T]) Pop() (T, error) {
 	return value, nil
 }
 
-// Peek returns the top element of the stack without removing it.
+// Returns the top element of the stack without removing it.
 //
 // Returns:
 //   - value: The top element of the stack.
@@ -110,12 +109,12 @@ func (s *Stack[T]) Pop() (T, error) {
 func (s *Stack[T]) Peek() (T, error) {
 	if s.IsEmpty() {
 		var zero T
-		return zero, errors.New("stack empty")
+		return zero, fmt.Errorf("stack empty")
 	}
 	return s.data[len(s.data)-1], nil
 }
 
-// IsEmpty reports whether the stack contains no elements.
+// Reports whether the stack contains no elements.
 //
 // Returns:
 //   - bool: true if the stack is empty; false otherwise.
@@ -128,7 +127,7 @@ func (s *Stack[T]) IsEmpty() bool {
 	return len(s.data) == 0
 }
 
-// Size returns the number of elements currently in the stack.
+// Returns the number of elements currently in the stack.
 //
 // Returns:
 //   - int: The count of elements in the stack.
@@ -143,7 +142,7 @@ func (s *Stack[T]) Size() int {
 	return len(s.data)
 }
 
-// Clear removes all elements from the stack, resetting it to empty.
+// Removes all elements from the stack, resetting it to empty.
 //
 // Example:
 //
@@ -155,7 +154,7 @@ func (s *Stack[T]) Clear() {
 	s.data = nil
 }
 
-// String returns a string representation of the stack.
+// Returns a string representation of the stack.
 //
 // Returns:
 //   - string: A string representation of the stack.
@@ -170,7 +169,7 @@ func (s *Stack[T]) String() string {
 	return fmt.Sprintf("Stack: %v", s.data)
 }
 
-// Clone creates and returns a deep copy of the stack.
+// Creates and returns a deep copy of the stack.
 //
 // Returns:
 //   - *Stack[T]: A new stack with the same elements.
@@ -187,7 +186,7 @@ func (s *Stack[T]) Clone() *Stack[T] {
 	return &Stack[T]{data: newData}
 }
 
-// Reverse reverses the order of elements in the stack.
+// Reverses the order of elements in the stack.
 //
 // Example:
 //
@@ -204,7 +203,7 @@ func (s *Stack[T]) Reverse() {
 	}
 }
 
-// ToSlice returns a copy of the stack's elements as a slice.
+// Returns a copy of the stack's elements as a slice.
 //
 // Returns:
 //   - []T: A copy of the stack's internal slice.
@@ -222,7 +221,7 @@ func (s *Stack[T]) ToSlice() []T {
 	return result
 }
 
-// Capacity returns the current capacity of the underlying slice.
+// Returns the current capacity of the underlying slice.
 //
 // Returns:
 //   - int: The capacity of the stack's internal slice.
@@ -235,7 +234,7 @@ func (s *Stack[T]) Capacity() int {
 	return cap(s.data)
 }
 
-// Contains reports whether the stack contains the given value.
+// Reports whether the stack contains the given value.
 //
 // Parameters:
 //   - value: The value to search for.
